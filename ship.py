@@ -7,7 +7,7 @@ class Ship:
         self.screen = screen
 
         # загрузка изображения корабля и получение поля
-        self.image = image.load('spaceship.png')
+        self.image = image.load('space-ship.png')
         self.image = transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
