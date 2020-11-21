@@ -1,24 +1,33 @@
 from pygame import *
 
-class Ship():
+
+class Ship:
     def __init__(self, screen):
+        """Иницилизирует корабль и задает его позицию на экране"""
         self.screen = screen
 
-        self.image = image.load('space-ship.png')
-        self.image = transform.scale(self.image, (150, 150))
+        # загрузка изображения корабля и получение поля
+        self.image = image.load('spaceship.png')
+        self.image = transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
+
+        # каждый новый корабль создается у нижнего края экрана
         self.rect.centerx = self.screen_rect.centerx
-        self.screen_rect.centery = 350
         self.rect.bottom = self.screen_rect.bottom
+
+        # флаг перемещения
         self.moving_right = False
         self.moving_left = False
 
     def update(self):
-        if self.moving_right == True and self.rect.right <= 1200:
+        if self.moving_right and self.rect.right < self.screen_rect.right:
             self.rect.centerx += 2
-        if self.moving_left == True and self.rect.left > 0:
+        if self.moving_left and self.rect.left > 0:
             self.rect.centerx -= 2
 
+
+
     def blitme(self):
+        """Рисует корабль в текущей позиции"""
         self.screen.blit(self.image, self.rect)
